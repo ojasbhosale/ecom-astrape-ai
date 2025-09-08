@@ -24,12 +24,24 @@ const limiter = rateLimit({
 app.use(limiter)
 
 // CORS configuration
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://astrape-store.vercel.app"
+]
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin) // allow this origin
+      } else {
+        callback(new Error("Not allowed by CORS"))
+      }
+    },
     credentials: true,
-  }),
+  })
 )
+
 
 // Body parsing middleware
 app.use(express.json({ limit: "10mb" }))
