@@ -45,7 +45,7 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary">
               <Package className="h-6 w-6" />
-              ShopEase
+              Astrape Store
             </Link>
             <div className="w-24 h-8 bg-muted animate-pulse rounded" />
           </div>
@@ -63,7 +63,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary">
             <Package className="h-6 w-6" />
-            ShopEase
+            Astrape Store
           </Link>
 
           {/* Navigation Links */}

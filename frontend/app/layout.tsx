@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "ShopEase - Modern E-commerce",
+  title: "Astrape Store - Modern E-commerce",
   description: "A modern e-commerce platform built with Next.js",
 }
 

@@ -10,7 +10,7 @@ export default function HomePage() {
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-            Welcome to <span className="text-primary">ShopEase</span>
+            Welcome to <span className="text-primary">Astrape Store</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
             Discover amazing products at unbeatable prices. Your one-stop shop for everything you need.
@@ -32,7 +32,7 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-12">Why Choose ShopEase?</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12">Why Choose Astrape Store?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="text-center">
               <CardContent className="pt-6">
