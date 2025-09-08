@@ -12,8 +12,6 @@ interface CartContextType {
   error: string | null
   addToCart: (item: Item, quantity?: number) => Promise<void>
   removeFromCart: (itemId: number, removeAll?: boolean) => Promise<void>
-  updateQuantity: (itemId: number, quantity: number) => Promise<void>
-  getItemQuantity: (itemId: number) => number
   refreshCart: () => Promise<void>
   clearError: () => void
 }
@@ -50,12 +48,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const getItemQuantity = (itemId: number): number => {
-    if (!cart?.items) return 0
-    const cartItem = cart.items.find((item) => item.item.id === itemId)
-    return cartItem?.quantity || 0
-  }
-
   const addToCart = async (item: Item, quantity = 1) => {
     if (!AuthService.isAuthenticated()) {
       throw new Error("Please log in to add items to cart")
@@ -67,26 +59,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       await refreshCart()
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Failed to add item to cart"
-      setError(errorMessage)
-      throw new Error(errorMessage)
-    }
-  }
-
-  const updateQuantity = async (itemId: number, quantity: number) => {
-    if (!AuthService.isAuthenticated()) {
-      throw new Error("Please log in to modify cart")
-    }
-
-    try {
-      setError(null)
-      if (quantity <= 0) {
-        await removeFromCart(itemId, true)
-      } else {
-        await apiClient.post("/cart/update", { itemId, quantity })
-        await refreshCart()
-      }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to update quantity"
       setError(errorMessage)
       throw new Error(errorMessage)
     }
@@ -120,8 +92,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         error,
         addToCart,
         removeFromCart,
-        updateQuantity,
-        getItemQuantity,
         refreshCart,
         clearError,
       }}

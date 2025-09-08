@@ -15,7 +15,7 @@ import { Search, AlertCircle } from "lucide-react"
 
 export default function ProductsPage() {
   const router = useRouter()
-  const { addToCart, updateQuantity, getItemQuantity } = useCart()
+  const { addToCart } = useCart()
   const [items, setItems] = useState<Item[]>([])
   const [filteredItems, setFilteredItems] = useState<Item[]>([])
   const [categories, setCategories] = useState<string[]>([])
@@ -99,19 +99,6 @@ export default function ProductsPage() {
     }
   }
 
-  const handleUpdateQuantity = async (itemId: number, quantity: number) => {
-    if (!isAuthenticated) {
-      router.push("/login")
-      return
-    }
-
-    try {
-      await updateQuantity(itemId, quantity)
-    } catch (err) {
-      console.error("Failed to update quantity:", err)
-    }
-  }
-
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -178,8 +165,6 @@ export default function ProductsPage() {
                     key={item.id}
                     item={item}
                     onAddToCart={handleAddToCart}
-                    onUpdateQuantity={handleUpdateQuantity}
-                    cartQuantity={getItemQuantity(item.id)}
                     isAuthenticated={isAuthenticated}
                   />
                 ))}
